@@ -2,7 +2,7 @@
 from . import zwift_messages_pb2
 from .request import Request
 
-COURSE_TO_WORLD = {3: 1, 4: 2, 5: 3, 6: 1}
+COURSE_TO_WORLD = {3: 1, 4: 2, 5: 3, 6: 1, 7: 3}
 
 
 class COURSES:
@@ -65,7 +65,10 @@ class PlayerStateWrapper(object):
 
     @property
     def world(self):
-        return COURSE_TO_WORLD[self.course]
+        if self.course in COURSE_TO_WORLD:
+            return COURSE_TO_WORLD[self.course]
+        else:
+            return self.course
 
     @property
     def road_id(self):
